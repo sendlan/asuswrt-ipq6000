@@ -1,0 +1,10 @@
+choice
+	prompt "Choose Product"
+	help
+	   Choose specific product for different hardware layout
+
+config PLAX56XP4
+	bool "PL-AX56_XP4 (IPQ6018 + QCA7550)"
+
+endchoice
+
