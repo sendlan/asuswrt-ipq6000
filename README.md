@@ -1,4 +1,3 @@
-
 注意：
 =
 1. **不**要用 **root** 用户 git 和编译！！！
@@ -26,21 +25,4 @@ sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git
 7. 输入 `make pl-ax56_xp4` 即可开始编译你要的固件了。
 
 8. 编译完成后输出固件路径：release/src-qca-cypress/image
-
-## Donate
-
-如果你觉得此项目对你有帮助，请捐助我们，以使项目能持续发展，更加完善。
-
-### PayPal
-
-[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://paypal.me/paldier9/)
-
-### Alipay 支付宝
-
-![alipay](doc/alipay_donate.jpg)
-
-### Wechat 微信
-  
-![wechat](doc/wechat_donate.jpg)
-
 
