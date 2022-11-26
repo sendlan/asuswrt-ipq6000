@@ -56,7 +56,7 @@ Generate_FDT () {
 
 Generate_Config () {
 	CONFIG="$CONFIG
-		config@$iter {
+		config@cp03-c1 {
 			description = \"OpenWrt\";
 			kernel = \"kernel@1\";
 			fdt = \"fdt@$iter\";
@@ -148,7 +148,7 @@ ${FDT}
 	};
 
 	configurations {
-		default = \"config@1\";
+		default = \"config@cp03-c1\";
 ${CONFIG}
 	};
 };"
