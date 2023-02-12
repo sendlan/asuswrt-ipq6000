@@ -863,8 +863,12 @@ ifeq ($(IPQ60XX),y)
 		PAD=`expr 64 - $${SIZE} % 64` ; \
 		dd if=/dev/zero count=1 bs=$${PAD} 2> /dev/null | tr \\000 \\377 >> $(PLATFORMDIR)/Image.img
 
+
 	asustools/mkits.sh -D qcom-ipq6018-cp03-c1 -o image/fit-qcom-ipq6018-cp03-c1.its -k $(PLATFORMDIR)/Image.img -r $(PLATFORMDIR)/target.image -d $(LINUXDIR)/arch/arm/boot/dts/qcom-ipq6018-$(lowercase_B).dtb -C gzip -a 0x$(LOADADDR) -e 0x$(ENTRYADDR) -A $(ARCH) -v $(KERNEL_VER)
 	asustools/mkimage -f image/fit-qcom-ipq6018-cp03-c1.its image/$(IMGNAME).img
+	scripts/mkits.sh -D qcom-ipq6018-cp03-c1 -o image/fit-qcom-ipq6018-cp03-c1-ubi.its -k $(PLATFORMDIR)/Image.img -d $(LINUXDIR)/arch/arm/boot/dts/qcom-ipq6018-$(lowercase_B).dtb  -C gzip -a 0x$(LOADADDR) -e 0x$(ENTRYADDR)  -c config@cp03-c1 -A $(ARCH) -v $(KERNEL_VER)
+	asustools/mkimage -f image/fit-qcom-ipq6018-cp03-c1-ubi.its image/$(IMGNAME).u
+	scripts/ubinize-image.sh    --kernel image/$(IMGNAME).u  $(PLATFORMDIR)/target.image image/$(IMGNAME).ubi  -p 128KiB -m 2048
 
 else ifeq ($(IPQ50XX),y)
 ifeq ($(MUSL64),y)
