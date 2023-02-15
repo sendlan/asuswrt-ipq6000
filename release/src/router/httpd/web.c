@@ -29969,18 +29969,10 @@ ej_get_wan_lan_status(int eid, webs_t wp, int argc, char **argv)
 			break;
 		}
 #endif		
-#if defined(PLAX56_XP4)
-		// Special case : bypass L3 (powerline)
-		if (lan_count == 3)
-			continue;
-#endif
+
 		json_object_object_add(wanLanLinkSpeed, name, json_object_new_string(speed));
 	}
-#if defined(PLAX56_XP4)
-		// Special case : bypass L3 (powerline)
-		if (lan_count >= 3)
-			lan_count--;
-#endif
+
 	json_object_object_add(wanLanCount, "wanCount", json_object_new_int(wan_count));
 	json_object_object_add(wanLanCount, "lanCount", json_object_new_int(lan_count));
 	json_object_object_add(wanLanStatus, "portSpeed", wanLanLinkSpeed);
