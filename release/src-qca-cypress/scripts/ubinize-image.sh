@@ -33,7 +33,11 @@ ubivol() {
 		echo "image=$image"
 		[ -n "$size" ] && echo "vol_size=${size}MiB"
 	else
+	if [  "$2" = "Factory" ]; then
+		echo "vol_size=256KiB"
+	else
 		echo "vol_size=1MiB"
+	fi
 	fi
 	if [ "$autoresize" ]; then
 		echo "vol_flags=autoresize"
@@ -71,7 +75,9 @@ ubilayout() {
 	fi
 	ubivol $vol_id rootfs "$2" $root_is_ubifs
 	vol_id=$(( $vol_id + 1 ))
-	[ "$root_is_ubifs" ] || ubivol $vol_id rootfs_data "" 1
+	ubivol $vol_id Factory
+	vol_id=$(( $vol_id + 1 ))
+	[ "$root_is_ubifs" ] || ubivol $vol_id jffs2 "" 1
 }
 
 while [ "$1" ]; do
