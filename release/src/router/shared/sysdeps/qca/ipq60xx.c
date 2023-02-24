@@ -49,12 +49,12 @@ enum {
 };
 
 enum {
-	LAN1_PORT,
-	LAN2_PORT,
-	LAN3_PORT,
+	LAN1_PORT=0,
+	LAN2_PORT=1,
+	LAN3_PORT=2,
 	LAN4_PORT=4,
 	WAN_PORT=3,
-	MAX_WANLAN_PORT
+	MAX_WANLAN_PORT=5
 };
 
 static const char *upstream_iptv_ifaces[16] = {
@@ -115,7 +115,7 @@ static const char *vport_to_iface[MAX_WANLAN_PORT] = {
 };
 #elif defined(PLAX56_XP4)
 static const char *vport_to_iface[MAX_WANLAN_PORT] = {
-	"eth1", "eth2", "eth3"/*PLC*/, "eth0",	/* LAN1~4 */
+	"eth0", "eth1", "eth2"/*PLC*/, "eth3",	/* LAN1~4 */
 	"eth4" 					/* WAN1 */
 };
 #else

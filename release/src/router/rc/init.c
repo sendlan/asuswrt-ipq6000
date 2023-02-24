@@ -6006,6 +6006,7 @@ int init_nvram(void)
 		add_rc_support("ofdma");
 		add_rc_support("smart_connect");
 		add_rc_support("app");
+		add_rc_support("loclist");
 
 		// the following values is model dep. so move it from default.c to here
 		nvram_set("wl0_HT_TxStream", "2");
