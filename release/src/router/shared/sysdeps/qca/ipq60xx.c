@@ -58,7 +58,7 @@ enum {
 };
 
 static const char *upstream_iptv_ifaces[16] = {
-#if defined(PLAX56_XP4)
+#if defined(PLAX56_XP4) || defined(RT360V6)
 	[WANS_DUALWAN_IF_WAN] = "eth4",
 #else
 #error Define WAN interfaces that can be used as upstream port of IPTV.
@@ -89,7 +89,7 @@ static const int lan_wan_partition[9][NR_WANLAN_PORT] = {
 static const int vport_to_phy_addr[MAX_WANLAN_PORT] = {
 	1, 2, 3, 4, 5,
 };
-#elif defined(PLAX56_XP4)
+#elif defined(PLAX56_XP4) || defined(RT360V6)
 static const int vport_to_phy_addr[MAX_WANLAN_PORT] = {
 	1, 2, 3, 4, 5,
 };
@@ -113,7 +113,7 @@ static const char *vport_to_iface[MAX_WANLAN_PORT] = {
 	"eth0", "eth1", "eth2", "eth3",		/* LAN1~4 */
 	"eth4" 					/* WAN1 */
 };
-#elif defined(PLAX56_XP4)
+#elif defined(PLAX56_XP4) || defined(RT360V6)
 static const char *vport_to_iface[MAX_WANLAN_PORT] = {
 	"eth0", "eth1", "eth2"/*PLC*/, "eth3",	/* LAN1~4 */
 	"eth4" 					/* WAN1 */
@@ -1145,7 +1145,7 @@ void __post_config_switch(void)
 	_eval(ipq807x_p1_8023az, DBGOUT, 0, NULL);
 #endif
 #endif
-#if defined(PLAX56_XP4)
+#if defined(PLAX56_XP4) || defined(RT360V6)
 	eval("devmem", "0x0009b794", "w", "0x7c7d"); // improve switch voltage (011 to 111) to avoid packet loss
 #endif
 }

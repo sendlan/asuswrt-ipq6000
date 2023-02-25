@@ -931,6 +931,7 @@ static int setAllSpecificColorLedOn(enum ate_led_color color)
 	case MODEL_RTAC59CD6R:
 	case MODEL_RTAC59CD6N:
 	case MODEL_PLAX56XP4:
+	case MODEL_RT360V6:
 		{
 			static enum led_id blue_led[] = {
 				LED_BLUE,
@@ -944,7 +945,7 @@ static int setAllSpecificColorLedOn(enum ate_led_color color)
 				LED_RED,
 				LED_ID_MAX
 			};
-#if defined(RTAC59_CD6R) || defined(RTAC59_CD6N) || defined(PLAX56_XP4)
+#if defined(RTAC59_CD6R) || defined(RTAC59_CD6N) || defined(PLAX56_XP4) || defined(RT360V6)
 			static enum led_id white_led[] = {
 				LED_WHITE,
 				LED_ID_MAX
@@ -3745,7 +3746,7 @@ int ate_dev_status(void)
 	{
 #define RETRY_MAX 100
 		int retry;
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6)
 		if(nvram_match("HwId", "A") || nvram_match("HwId", "C")){
 			have_bt_device = 1;
 		}else{

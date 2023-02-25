@@ -6,5 +6,8 @@ choice
 config PLAX56XP4
 	bool "PL-AX56_XP4 (IPQ6018 + QCA7550)"
 
+config RT360V6
+	bool "RT-360V6 (IPQ6018 + QCA7550)"
+
 endchoice
 

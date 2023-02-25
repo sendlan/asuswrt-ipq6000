@@ -558,6 +558,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
 	qcom-ipq6018-emulation-c3.dtb
 endif
 dtb-$(CONFIG_PLAX56XP4) += qcom-ipq6018-pl-ax56_xp4.dtb
+dtb-$(CONFIG_RT360V6) += qcom-ipq6018-rt-360v6.dtb
 dtb-$(CONFIG_ARCH_QCOM) += \
 	qcom-ipq6018-cp01-c1.dtb \
 	qcom-ipq6018-cp02-c1.dtb \
