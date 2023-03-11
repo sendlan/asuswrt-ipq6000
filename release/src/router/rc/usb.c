@@ -270,7 +270,7 @@ void add_usb_host_modules(void)
 	if (!hw_usb_cap())
 		return;
 #endif
-#if defined(PLAX56_XP4) || defined(RT360V6)
+#if defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18)
 	if (!nvram_get_int("usb_enable"))
 		return;
 #endif

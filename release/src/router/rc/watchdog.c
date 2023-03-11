@@ -7921,7 +7921,7 @@ static void bt_turn_off_service()
 	char *delim=";";
 	char *tmp;
 
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18)
 	if(nvram_match("HwId", "B") || nvram_match("HwId", "D")){
 		/* Slave, no bluetooth */
 		return;
@@ -9035,7 +9035,7 @@ static int bt_reset_once = 0;
 #endif
 static void bluetooth_check()
 {
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18)
 	if(nvram_match("HwId", "B") || nvram_match("HwId", "D")){
 		/* Slave, no bluetooth */
 		return;

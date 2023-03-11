@@ -87,7 +87,7 @@
 #include <asm/setup.h>
 #include <asm/sections.h>
 #include <asm/cacheflush.h>
-#if defined(CONFIG_PLAX56XP4) ||defined(CONFIG_RT360V6)
+#if defined(CONFIG_PLAX56XP4) ||defined(CONFIG_RT360V6) ||defined(CONFIG_RTAX18)
 #include <asm/gpio.h>
 #endif
 
@@ -1011,7 +1011,7 @@ static int __ref kernel_init(void *unused)
 	numa_default_policy();
 
 	flush_delayed_fput();
-#if defined(CONFIG_PLAX56XP4) ||defined(CONFIG_RT360V6)
+#if defined(CONFIG_PLAX56XP4) ||defined(CONFIG_RT360V6) ||defined(CONFIG_RTAX18)
 	// turn off green LED
 	gpio_set_value(32, 0);
 #endif

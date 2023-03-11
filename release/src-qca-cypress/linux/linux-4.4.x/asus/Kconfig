@@ -9,5 +9,8 @@ config PLAX56XP4
 config RT360V6
 	bool "RT-360V6 (IPQ6018 + QCA7550)"
 
+config RTAX18
+	bool "RT-AX18 (IPQ6018 + QCA7550)"
+
 endchoice
 
