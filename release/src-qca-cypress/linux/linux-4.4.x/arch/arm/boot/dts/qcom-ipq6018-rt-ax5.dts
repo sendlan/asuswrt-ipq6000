@@ -1,0 +1,357 @@
+/*
+ * Copyright (c) 2019, The Linux Foundation. All rights reserved.
+ *
+ * Permission to use, copy, modify, and/or distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+ * WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ * ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+ * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ * ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+ * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+ */
+
+#include "../../../arm64/boot/dts/qcom/qcom-ipq6018-cp03-c1.dts"
+#include "qcom-ipq6018.dtsi"
+
+/ {
+	#address-cells = <0x2>;
+	#size-cells = <0x2>;
+	model = "ASUS RT-360V6";
+	compatible = "qcom,ipq6018-cp03", "qcom,ipq6018";
+	interrupt-parent = <&intc>;
+        qcom,msm-id = <0x192 0x0>;
+
+	aliases {
+		led-boot = "/soc/leds/status_red";
+		led-failsafe = "/soc/leds/status_red";
+		led-running = "/soc/leds/status_green";
+		led-upgrade = "/soc/leds/status_green";
+                serial0 = &blsp1_uart3;
+		/*
+		 * Aliases as required by u-boot
+		 * to patch MAC addresses
+		 */
+		ethernet0 = "/soc/dp1";
+		ethernet1 = "/soc/dp2";
+                ethernet2 = "/soc/dp3";
+                ethernet3 = "/soc/dp4";
+                ethernet4 = "/soc/dp5";
+	};
+
+	chosen {
+		bootargs-override = "console=ttyMSM0,115200,n8 swiotlb=1 coherent_pool=2M ubi.mtd=UBI_DEV root=mtd:rootfs rootfstype=squashfs mtdparts=qcom_nand.0:1536k(0:SBL1)ro,1M(0:MIBIB)ro,3584k(0:QSEE)ro,512k(0:DEVCFG)ro,512k(0:RPM)ro,512k(0:CDT)ro,512k(0:APPSBLENV)ro,1536k(0:APPSBL)ro,512k(0:ART)ro,512k(bdata),512k(crash),512k(crash_syslog),112M(UBI_DEV),512k(nvram)";
+	};
+
+};
+
+&tlmm {
+ 	uart_pins: uart_pins {
+		mux {
+			pins = "gpio44", "gpio45";
+			function = "blsp2_uart";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+	};
+
+	spi_0_pins: spi_0_pins {
+		mux {
+			pins = "gpio38", "gpio39", "gpio40", "gpio41";
+			function = "blsp0_spi";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+	};
+
+	qpic_pins: qpic_pins {
+		data_0 {
+			pins = "gpio15";
+			function = "qpic_pad0";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_1 {
+			pins = "gpio12";
+			function = "qpic_pad1";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_2 {
+			pins = "gpio13";
+			function = "qpic_pad2";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_3 {
+			pins = "gpio14";
+			function = "qpic_pad3";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_4 {
+			pins = "gpio5";
+			function = "qpic_pad4";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_5 {
+			pins = "gpio6";
+			function = "qpic_pad5";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_6 {
+			pins = "gpio7";
+			function = "qpic_pad6";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		data_7 {
+			pins = "gpio8";
+			function = "qpic_pad7";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+		qpic_pad {
+			pins = "gpio1", "gpio3", "gpio4",
+			       "gpio10", "gpio11", "gpio17";
+			function = "qpic_pad";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+	};
+
+	button_pins: button_pins {
+
+		reset_button {
+			pins = "gpio19";
+			function = "gpio";
+			drive-strength = <8>;
+			bias-pull-up;
+		};
+	};
+
+	mdio_pins: mdio_pinmux {
+		mux_0 {
+			pins = "gpio64";
+			function = "mdc";
+			drive-strength = <8>;
+			bias-pull-up;
+		};
+		mux_1 {
+			pins = "gpio65";
+			function = "mdio";
+			drive-strength = <8>;
+			bias-pull-up;
+		};
+		mux_2 {
+			pins = "gpio75";
+			function = "gpio";
+			bias-pull-up;
+		};
+	};
+
+	leds_pins: leds_pins {
+		red {
+			pins = "gpio71";
+			function = "gpio";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+
+		orange {
+			pins = "gpio72";
+			function = "gpio";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+
+		green {
+			pins = "gpio73";
+			function = "gpio";
+			drive-strength = <8>;
+			bias-pull-down;
+		};
+	};
+};
+
+&soc {
+	mdio@90000 {
+		pinctrl-0 = <&mdio_pins>;
+		pinctrl-names = "default";
+		phy-reset-gpio = <&tlmm 75 0 &tlmm 77 1>;
+		status = "ok";
+		phy0: ethernet-phy@0 {
+			reg = <0>;
+		};
+		phy1: ethernet-phy@1 {
+			reg = <1>;
+		};
+                phy2: ethernet-phy@2 {
+                        reg = <2>;
+                };
+                phy3: ethernet-phy@3 {
+                        reg = <3>;
+                };
+                phy4: ethernet-phy@4 {
+                        reg = <4>;
+                };
+	};
+
+	ess-switch@3a000000 {
+		switch_cpu_bmp = <0x1>;  /* cpu port bitmap */
+		switch_lan_bmp = <0x1e>; /* lan port bitmap */
+		switch_wan_bmp = <0x20>; /* wan port bitmap */
+		switch_inner_bmp = <0xc0>; /*inner port bitmap*/
+		switch_mac_mode = <0x0>; /* mac mode for uniphy instance0*/
+		switch_mac_mode1 = <0xff>; /* mac mode for uniphy instance1*/
+		switch_mac_mode2 = <0xff>; /* mac mode for uniphy instance2*/
+		qcom,port_phyinfo {
+                        port@0 {
+                                port_id = <5>;
+                                phy_address = <4>;
+                        };
+                        port@1 {
+                                port_id = <1>;
+                                phy_address = <0>;
+                        };
+                        port@2 {
+                                port_id = <2>;
+                                phy_address = <1>;
+                        };
+			port@3 {
+				port_id = <3>;
+				phy_address = <2>;
+			};
+			port@4 {
+				port_id = <4>;
+				phy_address = <3>;
+			};
+		};
+	};
+
+	dp1 {
+		device_type = "network";
+		compatible = "qcom,nss-dp";
+		qcom,id = <5>;
+		reg = <0x3a001800 0x200>;
+		qcom,mactype = <0>;
+		local-mac-address = [000000000000];
+		qcom,link-poll = <1>;
+		qcom,phy-mdio-addr = <4>;
+		phy-mode = "sgmii";
+	};
+
+	dp2 {
+		device_type = "network";
+		compatible = "qcom,nss-dp";
+		qcom,id = <1>;
+		reg = <0x3a001000 0x200>;
+		qcom,mactype = <0>;
+		local-mac-address = [000000000000];
+		qcom,link-poll = <1>;
+		qcom,phy-mdio-addr = <0>;
+		phy-mode = "sgmii";
+		keep-forward = <1>;
+	};
+
+        dp3 {
+                device_type = "network";
+                compatible = "qcom,nss-dp";
+                qcom,id = <2>;
+                reg = <0x3a001200 0x200>;
+                qcom,mactype = <0>;
+                local-mac-address = [000000000000];
+                qcom,link-poll = <1>;
+                qcom,phy-mdio-addr = <1>;
+                phy-mode = "sgmii";
+        };
+
+        dp4 {
+                device_type = "network";
+                compatible = "qcom,nss-dp";
+                qcom,id = <3>;
+                reg = <0x3a001400 0x200>;
+                qcom,mactype = <0>;
+                local-mac-address = [000000000000];
+                qcom,link-poll = <1>;
+                qcom,phy-mdio-addr = <2>;
+                phy-mode = "sgmii";
+        };
+
+        dp5 {
+                device_type = "network";
+                compatible = "qcom,nss-dp";
+                qcom,id = <4>;
+                reg = <0x3a001600 0x200>;
+                qcom,mactype = <0>;
+                local-mac-address = [000000000000];
+                qcom,link-poll = <1>;
+                qcom,phy-mdio-addr = <3>;
+                phy-mode = "sgmii";
+        };
+
+	leds {
+		compatible = "gpio-leds";
+		pinctrl-0 = <&leds_pins>;
+		pinctrl-names = "default";
+		status = "ok";
+
+		led_red: status_red {
+			label = "v6:red:status";
+			gpio = <&tlmm 71 GPIO_ACTIVE_HIGH>;
+		};
+
+		led_orange: status_orange {
+			label = "v6:orange:status";
+			gpio = <&tlmm 72 GPIO_ACTIVE_HIGH>;
+		};
+
+		led_green: status_green {
+			label = "v6:green:status";
+			gpio = <&tlmm 73 GPIO_ACTIVE_HIGH>;
+		};
+	};
+
+
+	serial@78b0000 {
+	        status = "disabled";
+	};
+
+	blsp1_uart2: serial@78b0000 {
+	        status = "disabled";
+	};
+};
+
+&cpus {
+		opp_table0 {
+
+			opp04 {
+				opp-hz = <0x0 0x55d4a800>;
+				opp-microvolt = <0x4>;
+				clock-latency-ns = <0x30d40>;
+			};
+
+			opp05 {
+				opp-hz = <0x0 0x5fd82200>;
+				opp-microvolt = <0x5>;
+				clock-latency-ns = <0x30d40>;
+			};
+
+			opp06 {
+				opp-hz = <0x0 0x6b49d200>;
+				opp-microvolt = <0x6>;
+				clock-latency-ns = <0x30d40>;
+			};
+		};
+	};
+
+&blsp1_uart3 {
+	pinctrl-0 = <&uart_pins>;
+	pinctrl-names = "default";
+	status = "ok";
+};

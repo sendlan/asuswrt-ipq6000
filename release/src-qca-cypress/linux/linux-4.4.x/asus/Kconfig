@@ -12,5 +12,8 @@ config RT360V6
 config RTAX18
 	bool "RT-AX18 (IPQ6018 + QCA7550)"
 
+config RTAX5
+	bool "RT-AX5 (IPQ6018 + QCA7550)"
+
 endchoice
 
