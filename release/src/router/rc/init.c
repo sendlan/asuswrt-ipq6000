@@ -15752,7 +15752,7 @@ NO_USB_CAP:
 #endif
 
 #ifdef RTCONFIG_QCA_PLC2
-	add_rc_support("qca_plc2");
+	//add_rc_support("qca_plc2");
 #endif
 
 #ifdef RTCONFIG_HND_ROUTER_AX_675X
@@ -17729,8 +17729,8 @@ int init_main(int argc, char *argv[])
 				stop_wan();
 
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-			void reset_plc(int);
-			reset_plc(1);
+			// void reset_plc(int);
+			// reset_plc(1);
 #endif
 			stop_lan();
 #if defined(RTCONFIG_SOC_QCA9557) || defined(RTCONFIG_QCA953X) || defined(RTCONFIG_QCA956X) || defined(RTCONFIG_QCN550X)

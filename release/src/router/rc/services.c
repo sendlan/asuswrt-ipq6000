@@ -9903,7 +9903,7 @@ start_services(void)
 #endif
 
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-	start_plchost();
+	//start_plchost();
 #endif
 #ifdef RTCONFIG_NEW_USER_LOW_RSSI
 	start_roamast();
@@ -10013,7 +10013,7 @@ start_services(void)
 	start_nbr_monitor();
 #endif
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-	start_detect_plc();
+	//start_detect_plc();
 #endif
 #ifdef RTCONFIG_WIREGUARD
 	start_wgsall();
@@ -10031,7 +10031,7 @@ stop_services(void)
 	stop_wgsall();
 #endif
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-	stop_detect_plc();
+	//stop_detect_plc();
 #endif
 #ifdef RTCONFIG_AMAS_ADTBW
 	stop_amas_adtbw();
@@ -11632,7 +11632,7 @@ again:
 		nvram_set_int("wlready", 0);
 #endif
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-		reset_plc(1);
+		//reset_plc(1);
 		sleep(1);
 #endif
 
@@ -11722,7 +11722,7 @@ again:
 		}
 #endif
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-		reset_plc(1);
+		//reset_plc(1);
 #endif
 		sleep(2); // wait for all httpd event done
 		stop_lan_port();
@@ -11866,7 +11866,7 @@ again:
 			stop_networkmap();
 
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-			reset_plc(1);
+			//reset_plc(1);
 #endif
 #ifdef RTCONFIG_CFGSYNC
 #ifdef RTCONFIG_CONNDIAG
@@ -12842,7 +12842,7 @@ script_allnet:
 			sleep(2); // wait for all httpd event done
 
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-			stop_plchost();
+			//stop_plchost();
 #endif
 #ifdef RTCONFIG_MEDIA_SERVER
 			force_stop_dms();
@@ -13091,7 +13091,7 @@ script_allnet:
 			start_mt_daapd();
 #endif
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-			start_plchost();
+			//start_plchost();
 #endif
 #ifdef RTCONFIG_CFGSYNC
 			start_cfgsync();
@@ -16120,13 +16120,13 @@ start_write_smb_conf();
 	}
 #endif
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-	else if (strcmp(script, "plc") == 0) {
-		if (action & RC_SERVICE_STOP) reset_plc(1);
-		if (action & RC_SERVICE_START) {
-			start_plchost();
-			start_detect_plc();
-		}
-	}
+	// else if (strcmp(script, "plc") == 0) {
+	// 	if (action & RC_SERVICE_STOP) reset_plc(1);
+	// 	if (action & RC_SERVICE_START) {
+	// 		start_plchost();
+	// 		start_detect_plc();
+	// 	}
+	// }
 #endif	/* RTCONFIG_QCA_PLC_UTILS || RTCONFIG_QCA_PLC2 */
 #ifdef RTCONFIG_WIREGUARD
 	else if (strcmp(script, "wgs") == 0) {
@@ -16199,11 +16199,11 @@ start_write_smb_conf();
 	}
 #endif
 #ifdef RTCONFIG_QCA_PLC2
-	else if (strcmp(script, "plc_master") == 0)
-	{
-		if (action & RC_SERVICE_STOP) stop_plc_master();
-		if (action & RC_SERVICE_START) start_plc_master();
-	}
+	// else if (strcmp(script, "plc_master") == 0)
+	// {
+	// 	if (action & RC_SERVICE_STOP) stop_plc_master();
+	// 	if (action & RC_SERVICE_START) start_plc_master();
+	// }
 #endif	/* RTCONFIG_QCA_PLC2 */
 	else
 	{
@@ -19574,8 +19574,8 @@ void stop_qca_lbd(void)
 #ifdef RTCONFIG_QCA_PLC2
 void start_plc_master(void)
 {
-	sleep(1);
-	nvram_set("cfg_plc_m_ex", nvram_get("cfg_plc_master"));
+	// sleep(1);
+	// nvram_set("cfg_plc_m_ex", nvram_get("cfg_plc_master"));
 }
 
 void stop_plc_master(void)

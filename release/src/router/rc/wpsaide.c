@@ -39,8 +39,8 @@ static void wps_pbc(int sig)
 	{
 #ifdef RTCONFIG_QCA_PLC2
 //		do_plc_pushbutton(6);	//star PLC join procedure
-		killall("detect_plc", SIGUSR1);
-	    if(nvram_match("wps_enable", "1"))
+		// killall("detect_plc", SIGUSR1);
+	    // if(nvram_match("wps_enable", "1"))
 #endif
 		start_wps_pbc(0);
 	}

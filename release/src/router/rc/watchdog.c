@@ -4003,9 +4003,9 @@ void btn_check(void)
 		{
 			int wps_enable = nvram_match("wps_enable", "1");
 #if defined(RTCONFIG_QCA_PLC2)
-			nvram_unset("plc_pb_state");
-			if (1)
-#else
+			// nvram_unset("plc_pb_state");
+			// if (1)
+// #else
 			if (wps_enable)
 #endif
 			{
@@ -4175,15 +4175,15 @@ void btn_check(void)
 #endif	/* ! RTCONFIG_WPS_RST_BTN */
 
 #if defined(RTCONFIG_QCA_PLC2)
-			char *plc_pb_state = nvram_get("plc_pb_state");
-			int pb_state;
-			if (plc_pb_state != NULL)
-				pb_state = atoi(plc_pb_state);
-			else
-				pb_state = -1;
+			// char *plc_pb_state = nvram_get("plc_pb_state");
+			// int pb_state;
+			// if (plc_pb_state != NULL)
+			// 	pb_state = atoi(plc_pb_state);
+			// else
+			// 	pb_state = -1;
 
-			if (((wps_enable || pb_state == -2 /*OB*/) && is_wps_stopped()) || --wsc_timeout == 0 || IS_PLC_JOIN_STOPPED(pb_state))
-#else
+			// if (((wps_enable || pb_state == -2 /*OB*/) && is_wps_stopped()) || --wsc_timeout == 0 || IS_PLC_JOIN_STOPPED(pb_state))
+// #else
 			if (is_wps_stopped() || --wsc_timeout == 0)
 #endif
 			{
@@ -4219,11 +4219,11 @@ void btn_check(void)
 #endif
 
 #if defined(RTCONFIG_QCA_PLC2)
-				if (!wps_enable)
-					nvram_set("prelink_pap_status", "-1");	//PLC finish
-			}
-			if ((wps_enable || pb_state == -2 /*OB*/) && wsc_timeout == 0) //keep doing when stop with wps_enable
-			{
+			// 	if (!wps_enable)
+			// 		nvram_set("prelink_pap_status", "-1");	//PLC finish
+			// }
+			// if ((wps_enable || pb_state == -2 /*OB*/) && wsc_timeout == 0) //keep doing when stop with wps_enable
+			// {
 #endif
 #ifdef RTCONFIG_WIFI_CLONE
 				if (nvram_match("wps_e_success", "1")) {
@@ -4984,7 +4984,7 @@ static void catch_sig(int sig)
 		dbG("[watchdog] Handle WPS LED for WPS Start\n");
 
 #if defined(RTCONFIG_QCA_PLC2)
-		nvram_set("plc_pb_state", "-2");	//set plc_pb_state=-2 as OnBoarding for wps check
+		// nvram_set("plc_pb_state", "-2");	//set plc_pb_state=-2 as OnBoarding for wps check
 #endif
 
 #if defined(RTCONFIG_LP5523)
@@ -5025,8 +5025,8 @@ static void catch_sig(int sig)
 		}
 
 #if defined(RTCONFIG_QCA_PLC2)
-		if (btn_pressed_setup == BTNSETUP_START)
-			nvram_set("prelink_pap_status", "-1");	//WPS or PLC finish to update LED
+		// if (btn_pressed_setup == BTNSETUP_START)
+		// 	nvram_set("prelink_pap_status", "-1");	//WPS or PLC finish to update LED
 #endif	/* RTCONFIG_QCA_PLC2 */
 		btn_pressed_setup = BTNSETUP_NONE;
 		btn_count_setup = 0;
@@ -7630,10 +7630,10 @@ static void link_pap_status()
 #endif
 		{
 #if defined(RTCONFIG_QCA_PLC_UTILS) || defined(RTCONFIG_QCA_PLC2)
-			if (strncmp(nvram_safe_get("amas_ifname"),"eth1",4)==0 && nvram_get_int("autodet_plc_state")!=0 && nvram_get_int("autodet_plc_tx")<100 ) {
-				link_pap_status = 2;
-			}
-			else
+			// if (strncmp(nvram_safe_get("amas_ifname"),"eth1",4)==0 && nvram_get_int("autodet_plc_state")!=0 && nvram_get_int("autodet_plc_tx")<100 ) {
+			// 	link_pap_status = 2;
+			// }
+			// else
 #endif
 			{
 				link_pap_status = 1;
@@ -9126,9 +9126,9 @@ void rotate_strongswan_logfile(void)
 #if defined(RTCONFIG_QCA_PLC2)
 void check_process_plc(void)
 {
-	if (!pids("detect_plc")) {
-		notify_rc("start_detect_plc");
-	}
+	// if (!pids("detect_plc")) {
+	// 	notify_rc("start_detect_plc");
+	// }
 }
 #endif
 
@@ -9501,7 +9501,7 @@ wdp:
 	rotate_strongswan_logfile();
 #endif /* RTCONFIG_STRONGSWAN */
 #if defined(RTCONFIG_QCA_PLC2)
-	check_process_plc();
+	// check_process_plc();
 #endif
 }
 

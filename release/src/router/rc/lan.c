@@ -1973,10 +1973,10 @@ void start_lan(void)
 #endif
 					{
 #ifdef RTCONFIG_QCA_PLC2
-						get_plc_ifname(tmp);
-						if (strcmp(tmp, ifname) == 0) {
-							_dprintf("[%s][%d] SKIP ifname(%s) NOT to bridge\n", __func__, __LINE__, ifname);	//skip PLC interface not add to LAN bridge
-						} else
+						// get_plc_ifname(tmp);
+						// if (strcmp(tmp, ifname) == 0) {
+						// 	_dprintf("[%s][%d] SKIP ifname(%s) NOT to bridge\n", __func__, __LINE__, ifname);	//skip PLC interface not add to LAN bridge
+						// } else
 #endif	/* RTCONFIG_QCA_PLC2 */
 #ifdef RTCONFIG_WIFI_SON
 						if ((sw_mode() != SW_MODE_REPEATER && nvram_get_int("wl0.1_bss_enabled")
