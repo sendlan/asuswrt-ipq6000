@@ -323,21 +323,6 @@
 		};
 	};
 
-		qpic-nand@79b0000 {
-
-			nandcs@0 {
-
-				partition0@ {
-					label = "rootfs";
-					reg = <0x0 0x3c00000>;
-				};
-
-				partition1@0x8000000 {
-					label = "rootfs_1";
-					reg = <0x3c00000 0x3c00000>;
-				};
-			};
-		};
 
 		nss@40000000 {
 			qcom,max-frequency = <0x64b54000>;

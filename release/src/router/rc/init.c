@@ -2050,7 +2050,7 @@ static void post_restore_defaults(void)
 #elif defined(RTCONFIG_SOC_IPQ60XX)
 static void post_restore_defaults(void)
 {
-#if defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18) ||defined(RTAX5)
+#if defined(PLAX56_XP4)
 	if (nvram_match("HwId", "B")) {
 		nvram_set_int("usb_enable", 0);
 	}
