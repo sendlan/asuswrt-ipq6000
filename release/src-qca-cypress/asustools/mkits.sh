@@ -18,7 +18,7 @@
 DTB="";
 FDT="";
 CONFIG="";
-iter=1;
+iter=cp03-c1;
 
 usage() {
 	echo "Usage: `basename $0` -A arch -C comp -a addr -e entry" \
@@ -56,7 +56,7 @@ Generate_FDT () {
 
 Generate_Config () {
 	CONFIG="$CONFIG
-		config@cp03-c1 {
+		config@$iter {
 			description = \"OpenWrt\";
 			kernel = \"kernel@1\";
 			fdt = \"fdt@$iter\";
@@ -148,7 +148,7 @@ ${FDT}
 	};
 
 	configurations {
-		default = \"config@cp03-c1\";
+		default = \"config@1\";
 ${CONFIG}
 	};
 };"

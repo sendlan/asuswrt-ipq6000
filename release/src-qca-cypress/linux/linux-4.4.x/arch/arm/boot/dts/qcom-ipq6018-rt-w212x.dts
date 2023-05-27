@@ -20,7 +20,7 @@
 / {
 	#address-cells = <0x2>;
 	#size-cells = <0x2>;
-	model = "ASUS RT-360V6";
+	model = "ASUS RT-W212X";
 	compatible = "qcom,ipq6018-cp03", "qcom,ipq6018";
 	interrupt-parent = <&intc>;
         qcom,msm-id = <0x192 0x0>;

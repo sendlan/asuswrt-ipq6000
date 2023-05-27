@@ -15,5 +15,8 @@ config RTAX18
 config RTAX5
 	bool "RT-AX5 (IPQ6018 + QCA7550)"
 
+config RTW212X
+	bool "RT-W212X (IPQ6018 + QCA7550)"
+
 endchoice
 

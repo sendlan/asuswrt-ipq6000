@@ -34,7 +34,7 @@ ubivol() {
 		[ -n "$size" ] && echo "vol_size=${size}MiB"
 	else
 	if [  "$2" = "Factory" ] ||[  "$2" = "Factory2" ] ; then
-		echo "vol_size=256KiB"
+	    echo "image=image/img-0_vol-Factory.ubifs"
 	else
 		echo "vol_size=1MiB"
 	fi
@@ -78,6 +78,8 @@ ubilayout() {
 	ubivol $vol_id Factory
 	vol_id=$(( $vol_id + 1 ))
 	ubivol $vol_id Factory2
+	vol_id=$(( $vol_id + 1 ))
+	ubivol $vol_id nvram
 	vol_id=$(( $vol_id + 1 ))
 	[ "$root_is_ubifs" ] || ubivol $vol_id jffs2 "" 1
 }
