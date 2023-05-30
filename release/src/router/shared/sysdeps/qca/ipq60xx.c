@@ -47,7 +47,7 @@ enum {
 
 	VLAN_TYPE_MAX
 };
-#if defined(RT360V6) || defined(RTAX18) || defined(RTAX5) || defined(RTW212X)
+#if defined(RT360V6)
 enum {
 	LAN1_PORT=0,
 	LAN2_PORT=1,
@@ -118,7 +118,7 @@ static const int vport_to_phy_addr[MAX_WANLAN_PORT] = {
  * 			e.g. LAN1_PORT, LAN2_PORT, etc.
  * array element:	Interface name of specific virtual port.
  */
-#if defined(RT360V6) ||defined(RTAX18) || defined(RTAX5) || defined(RTW212X) /* normal case  */
+#if defined(RT360V6) || defined(RTAX18) || defined(RTAX5) || defined(RTW212X) /* normal case  */
 static const char *vport_to_iface[MAX_WANLAN_PORT] = {
 	"eth0", "eth1", "eth2", "eth3",		/* LAN1~4 */
 	"eth4" 					/* WAN1 */

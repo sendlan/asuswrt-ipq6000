@@ -868,7 +868,7 @@ ifeq ($(IPQ60XX),y)
 	asustools/mkimage -f image/fit-qcom-ipq6018-cp03-c1.its image/$(IMGNAME).img
 	scripts/mkits.sh -D qcom-ipq6018-cp03-c1 -o image/fit-qcom-ipq6018-cp03-c1-ubi.its -k $(PLATFORMDIR)/Image.img -d $(LINUXDIR)/arch/arm/boot/dts/qcom-ipq6018-$(lowercase_B).dtb  -C gzip -a 0x$(LOADADDR) -e 0x$(ENTRYADDR)  -c config@cp03-c1 -A $(ARCH) -v $(KERNEL_VER)
 	asustools/mkimage -f image/fit-qcom-ipq6018-cp03-c1-ubi.its image/$(IMGNAME).u
-	scripts/ubinize-image.sh    --kernel image/$(IMGNAME).u  $(PLATFORMDIR)/target.image image/$(IMGNAME).ubi  -p 128KiB -m 2048
+	scripts/ubinize-image.sh    --kernel image/$(IMGNAME).u  $(PLATFORMDIR)/target.image Factory/$(lowercase_B).bin image/$(IMGNAME).ubi  -p 128KiB -m 2048
 
 else ifeq ($(IPQ50XX),y)
 ifeq ($(MUSL64),y)

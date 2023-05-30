@@ -7921,11 +7921,13 @@ static void bt_turn_off_service()
 	char *delim=";";
 	char *tmp;
 
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18) || defined(RTAX5) || defined(RTW212X)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4)
 	if(nvram_match("HwId", "B") || nvram_match("HwId", "D")){
 		/* Slave, no bluetooth */
 		return;
 	}
+#elif defined(RT360V6) || defined(RTAX18) || defined(RTAX5) ||defined(RTW212X)
+		return;
 #endif
 #if defined(RTAX56_XD4)
 	if((nvram_match("HwId", "A") && nvram_get_int("BLE_BT") == 99) ||
@@ -9035,11 +9037,13 @@ static int bt_reset_once = 0;
 #endif
 static void bluetooth_check()
 {
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18) || defined(RTAX5) || defined(RTW212X)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4)
 	if(nvram_match("HwId", "B") || nvram_match("HwId", "D")){
 		/* Slave, no bluetooth */
 		return;
 	}
+#elif defined(RT360V6) || defined(RTAX18) || defined(RTAX5) ||defined(RTW212X)
+		return;
 #endif
 #if defined(RTAX56_XD4)
 	if((nvram_match("HwId", "A") && nvram_get_int("BLE_BT") == 99) ||

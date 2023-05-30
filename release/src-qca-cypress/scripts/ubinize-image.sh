@@ -5,6 +5,7 @@ ubootenv=""
 ubinize_param=""
 kernel=""
 rootfs=""
+factory=""
 outfile=""
 err=""
 
@@ -33,11 +34,7 @@ ubivol() {
 		echo "image=$image"
 		[ -n "$size" ] && echo "vol_size=${size}MiB"
 	else
-	if [  "$2" = "Factory" ] ||[  "$2" = "Factory2" ] ; then
-	    echo "image=image/img-0_vol-Factory.ubifs"
-	else
 		echo "vol_size=1MiB"
-	fi
 	fi
 	if [ "$autoresize" ]; then
 		echo "vol_flags=autoresize"
@@ -75,9 +72,9 @@ ubilayout() {
 	fi
 	ubivol $vol_id rootfs "$2" $root_is_ubifs
 	vol_id=$(( $vol_id + 1 ))
-	ubivol $vol_id Factory
+	ubivol $vol_id Factory "$4"
 	vol_id=$(( $vol_id + 1 ))
-	ubivol $vol_id Factory2
+	ubivol $vol_id Factory2 "$4"
 	vol_id=$(( $vol_id + 1 ))
 	ubivol $vol_id nvram
 	vol_id=$(( $vol_id + 1 ))
@@ -113,6 +110,11 @@ while [ "$1" ]; do
 			shift
 			continue
 		fi
+	    if [ ! "$factory" ]; then
+			factory=$1
+			shift
+			continue
+		fi
 		if [ ! "$outfile" ]; then
 			outfile=$1
 			shift
@@ -138,7 +140,7 @@ if [ -z "$ubinizecfg" ]; then
 	# try OSX signature
 	ubinizecfg="$( mktemp -t 'ubitmp' )"
 fi
-ubilayout "$ubootenv" "$rootfs" "$kernel" > "$ubinizecfg"
+ubilayout "$ubootenv" "$rootfs" "$kernel" "$factory" > "$ubinizecfg"
 
 cat "$ubinizecfg"
 ubinize -o "$outfile" $ubinize_param "$ubinizecfg"

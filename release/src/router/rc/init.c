@@ -16637,11 +16637,13 @@ void BT_chip_reset(int stage)
 #error NEED bt_reset defined
 #endif
 
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18) || defined(RTAX5) ||defined(RTW212X)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4)
 	if(nvram_match("HwId", "B") || nvram_match("HwId", "D")){
 		/* Slave, no bluetooth */
 		return;
 	}
+#elif defined(RT360V6) || defined(RTAX18) || defined(RTAX5) ||defined(RTW212X)
+		return;
 #endif
 	if (stage == 0) {
 		gpio_dir(bt_reset, GPIO_DIR_OUT);

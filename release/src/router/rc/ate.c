@@ -3749,12 +3749,14 @@ int ate_dev_status(void)
 	{
 #define RETRY_MAX 100
 		int retry;
-#if defined(RTAX56_XD4) || defined(PLAX56_XP4) || defined(RT360V6) || defined(RTAX18) ||defined(RTAX5) ||defined(RTW212X)
+#if defined(RTAX56_XD4) || defined(PLAX56_XP4)
 		if(nvram_match("HwId", "A") || nvram_match("HwId", "C")){
 			have_bt_device = 1;
 		}else{
 			have_bt_device = 0;
 		}
+#elif defined(RT360V6) || defined(RTAX18) || defined(RTAX5) ||defined(RTW212X)
+			have_bt_device = 0;
 #endif
 #if defined(RTAX56_XD4)
 		if((nvram_match("HwId", "A") && nvram_get_int("BLE_BT") == 99) ||

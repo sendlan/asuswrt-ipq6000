@@ -43,7 +43,7 @@
 	};
 
 	chosen {
-		bootargs-override = "console=ttyMSM0,115200,n8 swiotlb=1 coherent_pool=2M ubi.mtd=UBI_DEV root=mtd:rootfs rootfstype=squashfs mtdparts=qcom_nand.0:1536k(0:SBL1)ro,1M(0:MIBIB)ro,512k(0:BOOTCONFIG)ro,512k(0:BOOTCONFIG1)ro,3584K(0:QSEE)ro,3584K(0:QSEE_1)ro,512k(0:DEVCFG)ro,512k(0:DEVCFG_1)ro,512k(0:RPM)ro,512k(0:RPM_1)ro,512k(0:CDT)ro,512k(0:CDT_1)ro,512k(0:APPSBLENV)ro,1536k(0:APPSBL)ro,1536k(0:APPSBL_1)ro,512k(0:ART)ro,91392k(UBI_DEV),512k(0:ETHPHYFW),8M(log),12M(plugin),512k(nvram),256k(factory)";
+		bootargs-override = "console=ttyMSM0,115200,n8 swiotlb=1 coherent_pool=2M ubi.mtd=rootfs root=/dev/ubiblock0_1 rootfstype=squashfs ";
 	};
 
 };
